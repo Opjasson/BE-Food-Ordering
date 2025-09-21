@@ -14,23 +14,23 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        Role::truncate();
-        Schema::enableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
+        // Role::truncate();
+        // Schema::enableForeignKeyConstraints();
 
-        $data = [
-            'waiterss',
-            'chef',
-            'cashier',
-            'manager'
-        ];
+        // $data = [
+        //     'waiterss',
+        //     'chef',
+        //     'cashier',
+        //     'manager'
+        // ];
 
-        foreach ($data as $value) {
-            Role::insert([
-                'name' => $value,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        }
+        // foreach ($data as $value) {
+        //     Role::insert([
+        //         'name' => $value,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ]);
+        // }
     }
 }
