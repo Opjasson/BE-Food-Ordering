@@ -13,3 +13,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/create-order', function(){
     return 'create order';
 })->middleware(['auth:sanctum', 'ableCreateOrder']);
+
+Route::post('/finish-order', function(){
+    return 'finish order';
+})->middleware(['auth:sanctum', 'ableFinishOrder']);
