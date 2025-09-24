@@ -15,10 +15,12 @@ Route::prefix('auth')->group(function () {
     Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 });
 
-Route::post('/create-order', function(){
-    return 'create order';
-})->middleware(['auth:sanctum', 'ableCreateOrder']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/create-order', function () {
+        return 'create order';
+    })->middleware(['ableCreateOrder']);
 
-Route::post('/finish-order', function(){
-    return 'finish order';
-})->middleware(['auth:sanctum', 'ableFinishOrder']);
+    Route::post('/finish-order', function () {
+        return 'finish order';
+    })->middleware(['ableFinishOrder']);
+});
