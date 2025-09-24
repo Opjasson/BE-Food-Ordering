@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::post('/auth/login', [AuthController::class, 'login']);
-Route::post('/auth/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+// Route group auth
+Route::prefix('auth')->group(function () {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+});
 
 Route::post('/create-order', function(){
     return 'create order';
