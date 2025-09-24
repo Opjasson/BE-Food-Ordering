@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::post('/auth/login', [AuthController::class, 'login']);
+Route::post('/auth/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 
 Route::post('/create-order', function(){
     return 'create order';

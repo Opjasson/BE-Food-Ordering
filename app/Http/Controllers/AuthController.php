@@ -35,14 +35,17 @@ class AuthController extends Controller
             $token = $user->createToken("create token")->plainTextToken;
             $user->token = $token;
 
-            $datasUser = ["data" => $user];
-            return $datasUser;
-            
+            return response(["data" => $user]);
         } catch (ValidationException $e) {
             return response()->json([
                 'message' => 'Validasi gagal',
                 'errors' => $e->errors(),
             ], 422);
         }
+    }
+
+    public function me(Request $request)
+    {
+        return response(["data" => $request->user()]);
     }
 }
