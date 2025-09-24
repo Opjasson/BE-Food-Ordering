@@ -26,7 +26,17 @@ class AuthController extends Controller
                 ]);
             }
 
-            return $user->createToken("create token")->plainTextToken;
+            unset($user->email_verified_at);
+            unset($user->created_at);
+            unset($user->updated_at);
+            unset($user->deleted_at);
+
+            $user->tokens()->delete();
+            $token = $user->createToken("create token")->plainTextToken;
+            $user->token = $token;
+
+            $datasUser = ["data" => $user];
+            return $datasUser;
             
         } catch (ValidationException $e) {
             return response()->json([
