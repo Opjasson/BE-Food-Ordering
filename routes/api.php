@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 // Route group auth
 Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+    Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -24,3 +25,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return 'finish order';
     })->middleware(['ableFinishOrder']);
 });
+
+Route::post('/user', [UserController::class, 'store']);
