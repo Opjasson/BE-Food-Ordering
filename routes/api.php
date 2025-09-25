@@ -24,6 +24,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/finish-order', function () {
         return 'finish order';
     })->middleware(['ableFinishOrder']);
+
+    Route::post('/user', [UserController::class, 'store'])->middleware('ableCreateUser');
 });
 
-Route::post('/user', [UserController::class, 'store']);
