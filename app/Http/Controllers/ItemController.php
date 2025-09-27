@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        $data = Item::select('id', 'name', 'price', 'image')->get();
+        return response(["data" => $data]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -46,6 +53,7 @@ class ItemController extends Controller
             'image' => 'nullable|mimes:png,jpg',
         ]);
 
+        // Setting create file public/storage/items to saving image file
         if ($request->file('image')) {
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();
