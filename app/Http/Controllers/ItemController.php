@@ -37,4 +37,36 @@ class ItemController extends Controller
 
         return response()->json(['data' => $data]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|max:100',
+            'price' => 'required|integer',
+            'image' => 'nullable|mimes:png,jpg',
+        ]);
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $fileName = $file->getClientOriginalName();
+            $newName = Carbon::now()->timestamp . '_' . $fileName;
+
+            Storage::disk('public')->putFileAs('items', $file, $newName);
+
+            $item = Item::findOrFail($id);
+
+            $item->update([
+                "name" => $request->name,
+                "price" => $request->price,
+                "image" => $newName
+            ]);
+
+            return response()->json(['data' => $item]);
+        }
+
+        $item = Item::findOrFail($id);
+        $item->update($request->all());
+
+        return response(["data" => $item], 200);
+    }
 }
