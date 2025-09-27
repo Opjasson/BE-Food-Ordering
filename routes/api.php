@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     })->middleware(['ableFinishOrder']);
 
     Route::post('/user', [UserController::class, 'store'])->middleware('ableCreateUser');
+
+    Route::post('/item', [ItemController::class, 'store'])->middleware('ableCreateUpdateItem');
 });
 
