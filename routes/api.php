@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +34,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/item', [ItemController::class, 'index']);
     Route::post('/item', [ItemController::class, 'store'])->middleware('ableCreateUpdateItem');
     Route::patch('/item/{id}', [ItemController::class, 'update'])->middleware('ableCreateUpdateItem');
+    
+    Route::post('/order', [OrderController::class, 'store'])->middleware(['ableCreateOrder']);
+    
 });

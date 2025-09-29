@@ -16,7 +16,7 @@ class ableCreateOrder
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        if ($user->role_id != 1 && $user->role_id != 4) {
+        if ($user->role_id != 3) {
             return response()->json([
                 'msg' => "Cannot access"
             ], 403);
