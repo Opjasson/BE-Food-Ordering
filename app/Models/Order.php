@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
@@ -21,5 +22,15 @@ class Order extends Model
         $sumOrdersPrice = collect($orderDetail)->sum();
 
         return $sumOrdersPrice;
+    }
+
+    /**
+     * Get all of the orderDetail for the Order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orderDetail(): HasMany
+    {
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 }
