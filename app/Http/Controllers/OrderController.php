@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $dataOrder = Order::select('id', 'customer_name', 'table_no', 'order_date', 'order_time', 'status', 'total')->get();
+
+        return response(['data' => $dataOrder]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
