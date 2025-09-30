@@ -19,8 +19,6 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
-
     Route::post('/create-order', function () {
         return 'create order';
     })->middleware(['ableCreateOrder']);
@@ -34,7 +32,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/item', [ItemController::class, 'index']);
     Route::post('/item', [ItemController::class, 'store'])->middleware('ableCreateUpdateItem');
     Route::patch('/item/{id}', [ItemController::class, 'update'])->middleware('ableCreateUpdateItem');
-    
+
     Route::post('/order', [OrderController::class, 'store'])->middleware(['ableCreateOrder']);
-    
 });

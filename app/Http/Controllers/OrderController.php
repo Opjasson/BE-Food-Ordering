@@ -23,7 +23,7 @@ class OrderController extends Controller
             $data['order_date'] = date('Y-m-d');
             $data['order_time'] = date('H:i:s');
             $data['status'] = 'ordered';
-            $data['total'] = 10000;
+            $data['total'] = 0;
             $data['waiterss_id'] = $request->user()->id;
             $data['items'] = $request->items;
 
@@ -37,6 +37,9 @@ class OrderController extends Controller
                     'price' => $foodDrink->price
                 ]);
             });
+
+            $order->total = $order->sumOrderPrice();
+            $order->save();
 
             DB::commit();
         } catch (\Throwable $th) {

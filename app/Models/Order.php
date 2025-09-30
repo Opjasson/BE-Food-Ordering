@@ -15,4 +15,11 @@ class Order extends Model
         'total',
         'waiterss_id'
     ];
+
+    public function sumOrderPrice() {
+        $orderDetail = OrderDetail::where('order_id', $this->id)->pluck('price');
+        $sumOrdersPrice = collect($orderDetail)->sum();
+
+        return $sumOrdersPrice;
+    }
 }
