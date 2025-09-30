@@ -17,6 +17,11 @@ class OrderController extends Controller
         return response(['data' => $dataOrder]);
     }
 
+    public function show($id) {
+        $order = Order::findOrFail($id);
+        return $order;
+    }
+
     public function store(Request $request)
     {
         $request->validate([

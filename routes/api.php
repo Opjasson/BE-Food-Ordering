@@ -35,5 +35,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     Route::get('/order', [OrderController::class, 'index']);
+    Route::get('/order/{id}', [OrderController::class, 'show']);
     Route::post('/order', [OrderController::class, 'store'])->middleware(['ableCreateOrder']);
 });
