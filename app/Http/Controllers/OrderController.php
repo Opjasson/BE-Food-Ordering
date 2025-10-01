@@ -62,4 +62,18 @@ class OrderController extends Controller
 
         return response(['data' => $order]);
     }
+
+    public function setAsDone($id)
+    {
+      $order = Order::findOrFail($id);
+
+      if ($order->status != 'ordered') {
+        return response('order cannot set to done because the status is not ordered', 403);
+      }
+
+      $order->status = 'done';
+
+      $order->save();
+      return response(['data' => $order]);
+    }
 }
