@@ -35,6 +35,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     Route::get('/order/{id}/set-as-done', [OrderController::class, 'setAsDone'])->middleware(['ableFinishOrder']);
+    Route::get('/order/{id}/payment', [OrderController::class, 'payment'])->middleware(['ablePayOrder']);
     Route::get('/order', [OrderController::class, 'index']);
     Route::get('/order/{id}', [OrderController::class, 'show']);
     Route::post('/order', [OrderController::class, 'store'])->middleware(['ableCreateOrder']);

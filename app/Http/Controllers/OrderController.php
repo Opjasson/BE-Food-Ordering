@@ -76,4 +76,18 @@ class OrderController extends Controller
       $order->save();
       return response(['data' => $order]);
     }
+
+    public function payment($id)
+    {
+        $order = Order::findOrFail($id);
+
+        if ($order->status != 'done') {
+            return response('order cannot be done because the status is not done', 403);
+        }
+
+        $order->status = 'paid';
+
+        $order->save();
+        return response(['data' => $order]);
+    }
 }
