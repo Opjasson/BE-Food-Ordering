@@ -17,9 +17,10 @@ class OrderController extends Controller
         return response(['data' => $dataOrder]);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $order = Order::findOrFail($id);
-        return $order->loadMissing('orderDetail','orderDetail.item');
+        return $order->loadMissing('orderDetail:order_id,price,item_id', 'orderDetail.item:id,name', 'waiterss:id,name', 'cashier:id,name');
     }
 
     public function store(Request $request)

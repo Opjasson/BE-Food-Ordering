@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'ableCreateOrder' => \App\Http\Middleware\ableCreateOrder::class,
             'ableFinishOrder' => \App\Http\Middleware\ableFinishOrder::class,
+            'ablePayOrder' => \App\Http\Middleware\ablePayOrder::class,
             'ableCreateUser' => \App\Http\Middleware\ableCreateUser::class,
             'ableCreateUpdateItem' => \App\Http\Middleware\ableCreateUpdateItem::class,
         ]);
