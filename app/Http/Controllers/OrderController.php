@@ -19,7 +19,7 @@ class OrderController extends Controller
 
     public function show($id) {
         $order = Order::findOrFail($id);
-        return $order->loadMissing('orderDetail');
+        return $order->loadMissing('orderDetail','orderDetail.item');
     }
 
     public function store(Request $request)
