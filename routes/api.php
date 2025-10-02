@@ -19,14 +19,6 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('/create-order', function () {
-        return 'create order';
-    })->middleware(['ableCreateOrder']);
-
-    Route::post('/finish-order', function () {
-        return 'finish order';
-    })->middleware(['ableFinishOrder']);
-
     Route::post('/user', [UserController::class, 'store'])->middleware('ableCreateUser');
 
     Route::get('/item', [ItemController::class, 'index']);
